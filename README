@@ -1,0 +1,30 @@
+Welcome to my First Python Project.
+
+Its a Django app that scrapes out boxoffice data from a couple of websites and aggregates the data. 
+I originally had a bigger plan with this, but decided its not the project for me. 
+Feel free to view it at MovieCombo.com .
+
+These are the dependencies needed for this application. All in all you can set up a virtual env and dump this source at the same level as the env. The cron scripts (labeled as crom for some reason I am not willing to share!) will need
+the path modified for use. In fact this is the linux shared setup vs the Macbook setup.
+
+You'll notice the parsers use a file to keep track of the last movie parsed, it minimizes the number of hits to 90 a day and more importantly I can't run long lasting cron jobs on a share
+
+These are the dependencies:
+
+
+Beautiful Soup
+South
+HTML5Lib
+Django
+MySqlDb - MySQL-python
+django-chart-tools
+pil - PIL python imaging lib
+
+
+Sources:
+BoxOffice Mojo
+IMDB
+
+Template:
+TemplatesDock
+Enjoy ...
