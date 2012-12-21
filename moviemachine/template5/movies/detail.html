@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- Free web templates by http://www.templatesdock.com; released for free under a Creative Commons Attribution 3.0 License -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" content="en"><meta name="description" content="[HERE PASTE YOUR DESCRIPTION]">
+
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="/machineapp/media/css/main.css">
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="/machineapp/media/css/skin.css"><!--[if IE 6]>
+
+<script src="javascript/pngfix.js"></script><script>DD_belatedPNG.fix('#nav, #footer, #topstory .tag, .title');</script><![endif]-->
+    <script type="text/javascript" src="/machineapp/media/javascript/cufon-yui.js"></script><script type="text/javascript" src="/machineapp/media/javascript/font.font.js"></script>
+    <script type="text/javascript">Cufon.replace('h1, h2, h3, h4, h5, h6, #logo', {hover:true});</script>
+
+    <title>MOVIE COMBO</title></head><body>
+
+<div id="main">
+
+	<!-- HEADER -->
+	<div id="header" class="box">
+
+        <p id="logo"><a href="/movies/index" title="Movie Combo [Go to homepage]">MOVIE<span>COMBO</span></a></p>
+
+        <h3 id="slogan">The Box Office Analysis</h3>
+
+	</div> <!-- /header -->
+
+	<!-- NAVIGATION -->
+    <div id="nav" class="box">
+
+        <ul><li ><a href="/movies">Home</a></li>
+            <li><a href="/movies/trends">Trends</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="/movies/about">About</a></li>
+            <li class="last"><a href="/movies/advertise">Advertise</a></li>
+        </ul><!-- SEARCH -->
+        <!--<form action="#" method="get" id="search">
+
+     <div class="relative">
+
+         <div id="search-input"><input type="text" size="30" name="" class="input-text" value="Search our website" onfocus="if(this.value=='Search our website') this.value=''"></div>
+
+         <div id="search-submit"><input type="image" src="/machineapp/media/design/search-submit.png" value="Search"></div>
+
+     </div> <!-- /relative -->
+
+        <!--</form> -->
+
+    </div>
+
+    <!-- TRAY -->
+	<div id="tray" class="box">
+
+		<p class="f-right">
+		
+			<a href="#"><img src="/machineapp/media/design/ico-twitter.png" alt="Twitter"></a>
+			
+			<a href="#"><img src="/machineapp/media/design/ico-rss.png" alt="RSS"></a>
+			
+		</p>
+	
+{#		<p class="f-left">#}
+{#		#}
+{#			<a href="#">Home</a> <span>/</span> #}
+{#			#}
+{#			<a href="#">Category</a> <span>/</span> #}
+{#			#}
+{#			<strong>Page</strong>#}
+{#			#}
+{#		</p>#}
+	
+	</div> <!-- /tray -->
+	
+	<!-- COLUMNS -->
+	<div id="section" class="box">
+
+		<!-- CONTENT -->
+		<div id="content">
+
+			<div class="main-title box">
+			
+				<h1>{{ movie.title }}</h1>
+			
+			</div> <!-- /main-title -->
+		
+			<div class="padding">
+
+				<!-- IMAGE FLOATING -->
+				<p class="box"><img src="/machineapp/media/{{ pic.0.image }}" alt="{{ pic.0.description }}" class="f-left">
+                <br/><br/>
+                &nbsp;&nbsp;<b>Movie Details:</b><br/><br/>
+                &nbsp;&nbsp;<b>Studio: </b>{{ movie.studio }}<br/><br/>
+                &nbsp;&nbsp;<b>Rating: </b>{{ movie.mpaa_rating }}<br/><br/>
+                &nbsp;&nbsp;<b>Release Date: </b>{{ movie.release_date }}<br/><br/>
+                &nbsp;&nbsp;<b>Budget: </b> {{ movie.budget_display }}<br/><br/>
+                &nbsp;&nbsp;<b>Runtime: </b>{{ movie.runtime }} minutes<br/><br/>
+                &nbsp;&nbsp;<b>Total Revenues: </b>{{ sum_show }}
+                </p>
+
+				
+				<!-- LIST -->
+				<!-- TABLE --><h2>Box Office Numbers</h2>
+
+                {% load chart_tags %}
+                {% chart %}
+                    //chart.googleapis.com/chart
+                    ?chf=bg,s,E8F4F7
+                    ?chxt=x,y
+                    &chs=520x340
+                    &cht=lxy
+                    &chco=3072F3
+                    &chds=100000,10000000,100000,10000000
+                    &chd=t:-1|{{ results_a_string }}
+                    &chdl=Revenues
+                    &chdlp=b
+                    &chls=3
+                    &chma=5,5,5,25
+                    &chg=20,20,0,0
+                    &chtt=Box+Office+Numbers
+                    &chts=464A44,11.5
+                {% endchart %}
+
+                <table class="table">
+                    <tr>
+						<th>Box Office Date</th>
+						<th>Gross</th>
+
+					</tr>
+                    {% for b in b_data %}
+
+                        <tr>
+                        <td>{{ b.box_office_date }}</td>
+                        <td>{{ b.gross }}</td>
+
+                        </tr>
+                    {% endfor %}
+                   </table>
+
+                <!-- IMAGE GALLERY --><!--<h2>Image gallery</h2>
+
+				<ul class="gallery box"><li><a href="#"><img src="tmp/gallery-01.jpg" alt=""></a></li>
+					<li><a href="#"><img src="tmp/gallery-02.jpg" alt=""></a></li>
+					<li class="last"><a href="#"><img src="tmp/gallery-03.jpg" alt=""></a></li>
+				</ul><!-- FORM --><!--<h2>Form</h2>
+
+				<form action="#" method="post" class="form">
+					<ul><li>
+							<label for="input-01">Your Name (required):</label>
+							<input type="text" size="45" class="input-text" id="input-01" name=""></li>
+						<li>
+							<label for="input-02">E-mail Address (required):</label>
+							<input type="text" size="45" class="input-text" id="input-02" name=""></li>
+						<li>
+							<label for="input-03">Website:</label>
+							<input type="text" size="45" class="input-text" id="input-03" name=""></li>
+						<li>
+							<label for="input-04">Your Message (required):</label>
+							<textarea cols="75" rows="10" class="input-text" id="input-04" name=""></textarea></li>
+						<li><input type="submit" value="Submit" class="input-submit"></li>
+					</ul></form> -->
+							
+			</div> <!-- /padding -->
+			
+		</div> <!-- /content -->
+
+		<!-- SIDEBAR -->
+		<div id="aside">
+
+{#			<h3 class="title">Advertise with us</h3>#}
+{#			#}
+{#			<div class="padding">#}
+{#			#}
+{#				<ul class="ads box"><li><a href="#"><img src="tmp/125x125.gif" alt=""></a></li>#}
+{#					<li class="last"><a href="#"><img src="tmp/125x125.gif" alt=""></a></li>#}
+{#				</ul></div> <!-- /padding -->#}
+
+			<h3 class="title">Menu</h3>
+			
+			<div class="padding">
+
+				<ul class="menu"><li><a href="#">Homepage</a></li>
+                    <li><a href="/movies/trends">Trends</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li class="last"><a href="/movies/about">About</a></li>
+				</ul></div> <!-- /padding -->
+
+			<!-- ABOUT -->
+			<h3 class="title">About</h3>
+
+			<div class="padding">
+			
+				<p class="box nomt">
+					<img src="tmp/about-01.jpg" alt="" class="f-left">
+                    The data is pooled from Boxoffice Mojo, IMDB, and The Numbers.<br>
+				</p>
+
+			</div> <!-- /padding -->
+
+
+			 <!-- /padding -->
+				
+		</div> <!-- /aside -->
+
+	</div> <!-- /section -->
+
+	<!-- FOOTER -->
+	<div id="footer" class="box">
+
+		<!-- Would you like to remove this line? Visit www.templatesdock.com/terms.php -->
+		<p class="f-right"><a href="http://www.templatesdock.com/">Free web templates</a> by TemplatesDock<br>Tip: <a href="http://www.koupelny-sen.cz/">Koupelny SEN</a></p>
+		<!-- Would you like to remove this line? Visit www.templatesdock.com/terms.php -->
+	
+		<p class="f-left">Copyright © 2012 <a href="#">CodaPress</a>
+</p>
+
+	</div> <!-- /footer -->
+
+</div> <!-- /main -->
+
+<script type="/machineapp/media/text/javascript"> Cufon.now(); </script></body></html>

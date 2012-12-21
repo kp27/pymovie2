@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- Free web templates by http://www.templatesdock.com; released for free under a Creative Commons Attribution 3.0 License --><html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta http-equiv="content-language" content="en">
+    <meta name="description" content="[HERE PASTE YOUR DESCRIPTION]">
+
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="/machineapp/media/css/main.css">
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="/machineapp/media/css/skin.css">
+    <!--[if IE 6]><script src="/static/javascript/pngfix.js"></script><script>DD_belatedPNG.fix('#nav, #footer, #topstory .tag, .title');</script><![endif]-->
+    <script type="text/javascript" src="/machineapp/media/javascript/cufon-yui.js"></script><script type="text/javascript" src="/machineapp/media/javascript/font.font.js"></script>
+    <script type="text/javascript">Cufon.replace('h1, h2, h3, h4, h5, h6, #logo', {hover:true});</script>
+
+    <title>MOVIE COMBO</title></head><body>
+
+<div id="main">
+
+<!-- HEADER -->
+<div id="header" class="box">
+
+    <p id="logo"><a href="/movies/index" title="Movie Combo [Go to homepage]">MOVIE<span>COMBO</span></a></p>
+
+    <h3 id="slogan">The Box Office Analysis</h3>
+
+</div> <!-- /header -->
+
+<!-- NAVIGATION -->
+<div id="nav" class="box">
+
+    <ul><li class="current"><a href="#">Home</a></li>
+        <li><a href="/movies/trends">Trends</a></li>
+        <li><a href="#">Categories</a></li>
+        <li><a href="/movies/about">About</a></li>
+        <li class="last"><a href="/movies/advertise">Advertise</a></li>
+    </ul><!-- SEARCH -->
+</div> <!-- /nav -->
+<!-- TRAY -->
+<div id="tray" class="box">
+
+    <p class="f-right">
+
+        <a href="#"><img src="/machineapp/media/design/ico-twitter.png" alt="Twitter"></a>
+
+        <a href="#"><img src="/machineapp/media/design/ico-rss.png" alt="RSS"></a>
+
+    </p>
+
+    <p class="f-left">
+
+
+
+
+    </p>
+
+</div> <!-- /tray -->
+{#    <a href="/movies/seed_movies">Seed Movies</a>#}
+{#    <br/>#}
+{#    <br/>#}
+{#    <a href="/movies/parse_daily">Parse Daily Movies</a>#}
+{#    {% if parser_m %}#}
+{#        {{ parser_m }}#}
+{#    {%  endif %}#}
+<!-- COLUMNS -->
+<div id="section" class="box">
+
+    <!-- CONTENT -->
+    <div id="content">
+
+        <!-- TOPSTORY -->
+        <div id="topstory" class="box">
+
+            <h1> <a href="/movies/details/{{ movie.id }}">{{ movie.title }}</a></h1>
+
+
+
+            <p>
+                <img src="/machineapp/media/{% for p in p_list %}{% if p.movie == m_featured %}{{ p.image }}{% endif %}{% endfor %}" alt="{{ m_featured.title }}" class="f-left">
+
+                &nbsp;&nbsp;<b> </b>{{ m_featured.title }}<br/><br/>
+                &nbsp;&nbsp;<b>Release Date: </b>{{ m_featured.release_date }}<br/><br/>
+                &nbsp;&nbsp;<b>Rating: </b>{{ m_featured.mpaa_rating }}<br/><br/>
+                &nbsp;&nbsp;<b>Runtime: </b>{{ m_featured.runtime }} minutes<br/><br/>
+                &nbsp;&nbsp;<b>Budget: </b>{{  m_featured.budget_display  }}<br/><br/>
+                &nbsp;&nbsp;<b>Studio: </b>{{ m_featured.studio.name }}<br/><br/>
+                &nbsp;&nbsp;<b>Week Gross: </b>{{ week_gross }}<br/><br/>
+                <a href="/movies/details/{{ m_featured.id }}">More »</a>
+            </p>
+
+        </div> <!-- /topstory -->
+
+
+        <div class="padding">
+            {% if m_list %}
+                <ul class="articles box">
+                    {% for m in m_list %}
+
+                        <li class="box">
+                            <div class="articles-img">
+                                <a href="/movies/details/{{ m.id }}">
+                                <img src="/machineapp/media/{% for p in p_list %}{% if p.movie == m %}{{ p.image }}{% endif %}{% endfor %}" alt="{{ m.title }}">
+                                </a><p>  <a href="/movies/details/{{ m.id }}">More »</a></p>
+                            </div> <!-- /articles-img -->
+                            <div class="articles-desc">
+                                <h2><a href="/movies/details/{{ m.id }}">&nbsp;&nbsp;{{ m.title }}</a></h2>
+                                <p class="articles-info"><!--<span class="articles-info-inner"><a href="#">13 comments</a> <span>|</span> Peter Newton <span>|</span> <a href="#">Web Design</a></span>--></p>
+                                <p>&nbsp;&nbsp;<b>Studio: </b>{{ m.studio }}</p>
+                                <p>&nbsp;&nbsp;<b>Release Date: </b>{{ m.release_date }}</p>
+                                <p>&nbsp;&nbsp;<b>Budget: </b> {{ m.budget_display }}</p>
+                                <p> &nbsp;&nbsp;<b>Runtime: </b>{{ m.runtime }}</p>
+
+
+                            </div> <!-- /articles-desc -->
+
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No movies are available.</p>
+            {% endif %}
+
+            <div class="pagination box">
+        <span class="step-links">
+        {% if m_list.has_previous %}
+            <a href="?page={{ m_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ m_list.number }} of {{ m_list.paginator.num_pages }}.
+        </span>
+
+        {% if m_list.has_next %}
+            <a href="?page={{ m_list.next_page_number }}">next</a>
+        {% endif %}
+        </span>
+
+        </div> <!-- /pagination -->
+
+        </div> <!-- /padding -->
+
+    </div> <!-- /content -->
+
+    <!-- SIDEBAR -->
+    <div id="aside">
+
+        <h3 class="title">Advertise with us</h3>
+
+        <div class="padding">
+
+            <ul class="ads box"><li><a href="http://www.freedigitalphotos.net"><img src="/machineapp/media/tmp/DSC_7191.jpg" alt=""></a></li>
+                <li class="last"><a href="http://www.freedigitalphotos.net"><img src="/machineapp/media/tmp/tr_pr_6_23_10_09_-_336.jpg" alt=""></a></li>
+            </ul></div> <!-- /padding -->
+
+        <h3 class="title">Menu</h3>
+
+        <div class="padding">
+
+            <ul class="menu"><li class="first current"><a href="#">Homepage</a></li>
+                <li><a href="/movies/trends">Trends</a></li>
+                <li><a href="#">Categories</a></li>
+                <li class="last"><a href="/movies/about">About</a></li>
+            </ul></div> <!-- /padding -->
+
+        <!-- ABOUT -->
+        <h3 class="title">About</h3>
+
+        <div class="padding">
+
+            <p class="box nomt">
+                <img src="/machineapp/media/tmp/about-01.jpg" alt="" class="f-left">
+                The data is pooled from Boxoffice Mojo, IMDB, and The Numbers.<br>
+            </p>
+
+        </div> <!-- /padding -->
+
+
+    </div> <!-- /aside -->
+
+</div> <!-- /section -->
+
+<!-- FOOTER -->
+<div id="footer" class="box">
+
+    <!-- Would you like to remove this line? Visit www.templatesdock.com/terms.php -->
+    <p class="f-right"><a href="http://www.templatesdock.com/">Free web templates</a> by TemplatesDock<br>Author: Jessie Doe<br>Customized By: Me</p>
+    <!-- Would you like to remove this line? Visit www.templatesdock.com/terms.php -->
+
+    <p class="f-left">Copyright © 2012 <a href="#">Kunal</a>
+    </p>
+
+</div> <!-- /footer -->
+
+</div> <!-- /main -->
+
+<script type="text/javascript"> Cufon.now(); </script></body></html>
+
